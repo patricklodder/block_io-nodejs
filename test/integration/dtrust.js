@@ -26,6 +26,9 @@ const KEYS = [
   BlockIo.ECKey.fromPassphrase(Buffer.from('key3'))
 ];
 
+// Key 0 signs with lowR
+KEYS[0].lowR = true;
+
 const SIG_ADDRS = [
   'nZ7QHcpJ5tpzxQUV8vEnGU4m7zLjkNiMBU',
   'nj8visBXviBNZs5zXkn6DYG6Nc97Nv995g',
@@ -70,7 +73,7 @@ CT.create(test, client).title('Get New DTrust Address (too high required sigs)')
     required_signatures: KEYS.length + 1,
     public_keys: KEYS.map(key => key.pub.toString('hex')).join(',')
   })
-  .fails()
+  .failsServerSide()
   .execute();
 
 CT.create(test, client).title('Get New DTrust Address (duplicate signers)')
@@ -80,7 +83,7 @@ CT.create(test, client).title('Get New DTrust Address (duplicate signers)')
     required_signatures: KEYS.length,
     public_keys: KEYS.map(() => KEYS[0].pub.toString('hex')).join(',')
   })
-  .fails()
+  .failsServerSide()
   .execute();
 
 CT.create(test, client).title('Get DTrust Addresses')
@@ -224,7 +227,7 @@ cache.require(['dtrustWithdrawal'], () => {
   const w = cache('dtrustWithdrawal');
   w.data.inputs = BlockIo.helper.signInputs(KEYS[0], w.data.inputs);
 
-  CT.create(test, client).title('Sending in single-key withdrawal sigs')
+  CT.create(test, client).title('Sending in single-key withdrawal sigs with low R')
   .method('sign_and_finalize_withdrawal')
   .payload({ signature_data: JSON.stringify(w.data) })
   .succeeds()
@@ -252,7 +255,7 @@ cache.require(['dtrustWithdrawal'], () => {
   CT.create(test, client).title('Sending in an already finished withdrawal')
   .method('sign_and_finalize_withdrawal')
   .payload({ signature_data: JSON.stringify(w.data) })
-  .fails()
+  .failsServerSide()
   .execute();
 
 });
