@@ -1,0 +1,9 @@
+{
+  "create_2_of_2": {
+    "key1": "ef4fc6cfd682494093bbadf041ba4341afbe22b224432e21a4bc4470c5b939d4",
+    "key2": "123f37eb9a7f24a120969a1b2d6ac4859fb8080cfc2e8d703abae0f44305fc12",
+    "network": "LTCTEST",
+    "address": "2MvCbr6rgoSafAEafGMv6p2dpRgByXHWNgw",
+    "redeemscript": "522103820317ad251bca573c8fda2b8f26ffc9aae9d5ecb15b50ee08d8f9e009def38e210238de8c9eb2842ecaf0cc61ee6ba23fe4e46f1cfd82eac0910e1d8e865bd76df952ae"
+  }
+}
