@@ -1,0 +1,10 @@
+{
+  "key_derivation": {
+    "pin": "123456",
+    "pin_key": "0EeMOVtm5YihUYzdCNgleqIUWkwgvNBcRmr7M0t9GOc="
+  },
+  "encryption": {
+    "cleartext": "I'm a little tea pot short and stout",
+    "ciphertext": "7HTfNBYJjq09+vi8hTQhy6lCp3IHv5rztNnKCJ5RB7cSL+NjHrFVv1jl7qkxJsOg"
+  }  
+}
